@@ -16,6 +16,10 @@ jobs:
         run: |
           tar -xzvf liquidass-alerts-only-src.tar.gz
           ls -la
+          echo "=== 列出所有子目录 ==="
+          find . -type d -not -path './.git*' | head -50
+          echo "=== 查找所有 Makefile ==="
+          find . -name "Makefile" -not -path './.git*'
 
       # 2. 手动安装 Theos（替换掉那个已经失效的action）
       - name: Install Theos
