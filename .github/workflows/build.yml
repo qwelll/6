@@ -26,8 +26,13 @@ jobs:
         run: |
           export THEOS=~/theos
           git clone --recursive https://github.com/theos/theos.git $THEOS
+          # 下载 iOS SDK
+          git clone --depth 1 https://github.com/theos/sdks.git /tmp/sdks
+          mkdir -p $THEOS/sdks
+          cp -R /tmp/sdks/iPhoneOS16.5.sdk $THEOS/sdks/ 2>/dev/null || cp -R /tmp/sdks/iPhoneOS*.sdk $THEOS/sdks/
           echo "THEOS=$THEOS" >> $GITHUB_ENV
           echo "PATH=$THEOS/bin:$PATH" >> $GITHUB_ENV
+          ls $THEOS/sdks/
 
       # 3. 进入解压出的目录进行编译
       - name: Build Package
