@@ -32,7 +32,7 @@ jobs:
       # 3. 进入解压出的目录进行编译
       - name: Build Package
         run: |
-          if [ -d "liquidass-alerts-only-src" ]; then cd liquidass-alerts-only-src; fi
+          cd liquidass-alerts-only
           make clean
           make package FINALPACKAGE=1
 
